@@ -1,5 +1,5 @@
 <project name="Salesforce" default="deployall" basedir="."
-  xmlns:sf="antlib:com.salesforce:deploy">
+  xmlns:sf="deployall">
 
   <property file="build.properties" />
 
