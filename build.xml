@@ -1,6 +1,5 @@
-<project name="Salesforce" default="deploy" basedir="."
+<project name="Product-ffotprint" default="deployall" basedir="."
   xmlns:sf="antlib:com.salesforce">
-  <taskdef resource="com/salesforce/antlib.xml" classpath="./lib/ant-salesforce.jar" />
   <property file="build.properties" />
 
   <property environment="env" />
