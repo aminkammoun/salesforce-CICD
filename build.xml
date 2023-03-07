@@ -8,7 +8,7 @@
   <!--   <! — Deploy the unpackaged set of metadata retrieved with retrieveUnpackaged and run tests in
   this organization’s namespace only →
  -->
-  <target name="deployall">
+  <target name="deployall:deploy">
 
     <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}"
       testlevel="NoTestRun" logtype="Detail" deployRoot="force-app" />
