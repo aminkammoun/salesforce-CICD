@@ -33,4 +33,4 @@ jobs:
     - name: 'Authorize'
       run: sfdx force:auth:jwt:grant --clientid=${{ secrets.COSUMER_KEY }} --username=${{ secrets.USERNAME }} --jwtkeyfile server.key --setdefaultdevhubusername --setalias=hub-org
     - name: 'Run Test on Metadata'
-      run: sfdx force:mdapi:deploy --deploydir=force-app --testlevel=RunLocalTests --checkonly -u hub-org
+      run: sfdx force:mdapi:deploy --deploydir=force-app --testlevel=RunLocalTests -u hub-org
