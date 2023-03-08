@@ -17,6 +17,20 @@
         <name>ApexTestSuite</name>
     </types>
     <types>
+        <members>Case</members>
+        <members>Contact</members>
+        <members>Animal__c</members>
+        <members>BatchLeadConvertErrors__c</members>
+        <members>Drink_Order__c</members>
+        <members>Order_Event__e</members>
+        <members>Tower__c</members>
+        <members>User</members>
+        <members>Vehicle__c</members>
+        <members>Work_Part__c</members>
+        <members>Product2</members>
+        <name>CustomObject</name>
+    </types>  
+    <types>
         <members>*</members>
         <name>ApexTrigger</name>
     </types>
@@ -32,5 +46,5 @@
         <members>*</members>
         <name>StaticResource</name>
     </types>
-    <version>56.0</version>
+    <version>57.0</version>
 </Package>
