@@ -39,7 +39,7 @@ jobs:
     
     - name: 'Installing SFDX scanner'
       run: 
-        sfdx plugins:install @salesforce/sfdx-scanner
+        npm i @salesforce/sfdx-scanner
       
    # Runs a set of commands using the runners shell
     - name: 'Decrypt file'
