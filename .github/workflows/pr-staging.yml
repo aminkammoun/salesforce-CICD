@@ -50,8 +50,7 @@ jobs:
     
     - name: 'install delta'
       run: |
-          sfdx plugins:install sfdx-git-delta
-          echo y
+          echo y | sfdx plugins:install sfdx-git-delta
           sfdx plugins
           
     - name: "Install App and Create Delta"   
