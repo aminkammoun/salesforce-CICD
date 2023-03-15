@@ -17,7 +17,7 @@ jobs:
     steps:   
     - uses: actions/setup-node@v3
       with:
-        node-version: '14.17.0'
+        node-version: '16'
     
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
@@ -50,8 +50,8 @@ jobs:
     
     - name: 'install delta'
       run: |
-          npm install sfdx-git-delta@latest --global
-          sgd --version
+          sfdx plugins:install sfdx-git-delta
+          sfdx plugins
           
     - name: "Install App and Create Delta"   
       run: |
@@ -59,7 +59,7 @@ jobs:
         git fetch --all
         git checkout -b pr
         git --no-pager diff --name-status pr origin/staging
-        sgd --to pr --from origin/staging --repo . --output .
+        sfdx sgd:source:delta --to pr --from origin/staging --repo . --output .
         cat package/package.xml
     - name: 'Convert Metadata'
       run: sfdx force:source:convert --manifest=package/package.xml  --outputdir=convert
