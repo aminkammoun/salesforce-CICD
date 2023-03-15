@@ -46,7 +46,7 @@ jobs:
     # Install SFDX scanner
     - name: 'Installing SFDX scanner'
       run: |
-        npm i @salesforce/sfdx-scanner@3.10.0
+        npm i @salesforce/sfdx-scanner@2.9.1
         sfdx plugins
    # Runs a set of commands using the runners shell
     - name: 'Decrypt file'
