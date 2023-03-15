@@ -63,12 +63,16 @@ jobs:
     - name: 'Create delta packages for new, modified or deleted metadata'
       run: | 
         mkdir changed-sources
-        sfdx sgd:source:delta --to "HEAD" --from "origin/staging" --output changed-sources/ --generate-delta --source force-app/ 
+        git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
+        git fetch --all
+        git checkout -b pr
+        git --no-pager diff --name-status pr origin/staging
+        sfdx sgd:source:delta --to pr --from origin/staging --output changed-sources/ --generate-delta --source force-app/ 
     # Now we can use the sfdx scanner to scan the code in the delta directory
     # The output of the scan is stored in a file called apexScanResults.sarif
 
-            # The .sarif file can later be uploaded to github, so that we can see the 
-            # results of the scan directly from the PR.
+    # The .sarif file can later be uploaded to github, so that we can see the 
+    # results of the scan directly from the PR.
 
     - name: 'Scan code'
       run: |
@@ -80,7 +84,7 @@ jobs:
     - name: Upload SARIF file
       uses: github/codeql-action/upload-sarif@v1
       with:
-        sarif_file: convert/apexScanResults.sarif
+        sarif_file: changed-sources/apexScanResults.sarif
     
     - name: 'Run Test on Metadata'
       run: sfdx force:mdapi:deploy --deploydir=convert --testlevel=RunLocalTests --checkonly -u hub-org  
