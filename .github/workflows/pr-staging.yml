@@ -50,7 +50,8 @@ jobs:
     
     - name: 'install delta'
       run: |
-          sfdx plugins:install sfdx-git-delta
+          npm install sfdx-git-delta@latest --global
+          sgd --version
           
     - name: "Install App and Create Delta"   
       run: |
