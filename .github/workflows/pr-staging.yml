@@ -22,14 +22,7 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
     
-    # Runs a single command using the runners shell
-    - name: 'Build and Deploy'
-      run: |
-        wget https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
-        mkdir sfdx-cli
-        tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
-        ./sfdx-cli/install
-        sfdx --version
+   
     # Install java as it is required for the next step
     
   
@@ -38,6 +31,11 @@ jobs:
         sudo curl -s https://deb.nodesource.com/setup_16.x | sudo bash
         sudo apt install nodejs -y
         node -v
+     # Runs a single command using the runners shell
+    - name: 'Build and Deploy'
+      run: |
+        npm install sfdx-cli --global
+        sfdx --version
     # Install SFDX scanner
     - name: 'Installing SFDX scanner'
       run: 
