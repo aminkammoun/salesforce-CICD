@@ -60,21 +60,19 @@ jobs:
           echo y | sfdx plugins:install sfdx-git-delta
           sfdx plugins
           
-    - name: "Install App and Create Delta"   
-      run: |
-        git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
-        git fetch --all
-        git checkout -b pr
-        git --no-pager diff --name-status pr origin/staging
-        sfdx sgd:source:delta --to pr --from origin/staging --repo . --output .
-        cat package/package.xml
-    
-    - name: 'Convert Metadata'
-      run: sfdx force:source:convert --manifest=package/package.xml  --outputdir=convert
-    
+    - name: 'Create delta packages for new, modified or deleted metadata'
+      run: | 
+        mkdir changed-sources
+        sfdx sgd:source:delta --to "HEAD" --from "HEAD^" --output changed-sources/ --generate-delta --source force-app/ 
+    # Now we can use the sfdx scanner to scan the code in the delta directory
+    # The output of the scan is stored in a file called apexScanResults.sarif
+
+            # The .sarif file can later be uploaded to github, so that we can see the 
+            # results of the scan directly from the PR.
+
     - name: 'Scan code'
       run: |
-        cd convert
+        cd changed-sources
         sfdx scanner:run --format sarif --target './**/*.cls' --category "Design,Best Practices,Performance" --outfile 'apexScanResults.sarif'  
         cd ..
     
