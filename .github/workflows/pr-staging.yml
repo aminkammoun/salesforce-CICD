@@ -31,12 +31,13 @@ jobs:
         ./sfdx-cli/install
     # Install java as it is required for the next step
     
-    - name: 'Installing java'
+  
+    - name : "install node js"
       run: |
-        sudo apt-get update
-        sudo apt install default-jdk
+        sudo curl -s https://deb.nodesource.com/setup_16.x | sudo bash
+        sudo apt install nodejs -y
+        node -v
     # Install SFDX scanner
-    
     - name: 'Installing SFDX scanner'
       run: 
         npm i @salesforce/sfdx-scanner
