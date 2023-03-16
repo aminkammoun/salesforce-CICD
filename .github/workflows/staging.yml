@@ -48,7 +48,7 @@ jobs:
         git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
         git fetch --all
         git --no-pager diff --name-status staging origin/main
-        sfdx sgd:source:delta --to 'HEAD' --from 'HEAD^' --repo . --output .
+        sfdx sgd:source:delta --to staging --from origin/main --repo . --output .
         cat package/package.xml
     - name : "delete convert dir"
       run : sudo rm -r convert
