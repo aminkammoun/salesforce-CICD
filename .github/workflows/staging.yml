@@ -44,6 +44,7 @@ jobs:
     
     - name: 'Create delta packages for new, modified or deleted metadata'
       run: | 
+        sudo rm -r package
         git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
         git fetch --all
         git --no-pager diff --name-status staging origin/main
