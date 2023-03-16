@@ -66,6 +66,7 @@ jobs:
         git checkout -b pr
         git --no-pager diff --name-status pr origin/staging
         sfdx sgd:source:delta --to pr --from origin/staging --output changed-sources/ --generate-delta --source force-app/ 
+        cat package/package.xml
     # Now we can use the sfdx scanner to scan the code in the delta directory
     # The output of the scan is stored in a file called apexScanResults.sarif
 
@@ -84,5 +85,7 @@ jobs:
       with:
         sarif_file: changed-sources/apexScanResults.sarif
     
+    - name: 'Convert Metadata'
+      run: sfdx force:source:convert --manifest=package/package.xml  --outputdir=convert
     - name: 'Run Test on Metadata'
       run: sfdx force:mdapi:deploy --deploydir=convert --testlevel=RunLocalTests --checkonly -u hub-org  
