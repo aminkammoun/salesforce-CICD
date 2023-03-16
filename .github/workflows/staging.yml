@@ -48,11 +48,11 @@ jobs:
         git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
         git fetch --all
         git --no-pager diff --name-status staging origin/main
-        sfdx sgd:source:delta --to 'HEAD' --from 'HEAD^' --repo . --output .
+        sfdx sgd:source:delta --to staging --from origin/main --repo . --output .
         cat package/package.xml
     - name : "delete convert dir"
       run : sudo rm -r convert
     - name: 'Convert Metadata'
       run: sfdx force:source:convert --manifest=package/package.xml --outputdir=convert
     - name: 'Run Test on Metadata'
-      run: sfdx force:mdapi:deploy --deploydir=convert
+      run: sfdx force:mdapi:deploy --deploydir=convert -u hub-org
