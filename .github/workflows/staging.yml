@@ -52,4 +52,4 @@ jobs:
         sfdx sgd:source:delta --to pr --from origin/main --output changed-sources/ --generate-delta --source force-app/ 
     
     - name: 'Run Test on Metadata'
-      run: sfdx force:mdapi:deploy --deploydir=changed-sources -u hub-org
+      run: sfdx force:mdapi:deploy --deploydir=changed-sources/destructiveChanges --checkonly --ignorewarnings -u hub-org
