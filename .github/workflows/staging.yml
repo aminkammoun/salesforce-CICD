@@ -50,6 +50,6 @@ jobs:
         git --no-pager diff --name-status staging origin/main
         sfdx sgd:source:delta --to staging --from origin/main --repo . --output .
     - name: 'Convert Metadata'
-      run: sfdx force:source:convert --manifest=package/package.xml --outputdir=convert
+      run: sfdx force:source:convert --manifest=changed-sources/package/package.xml --outputdir=convert
     - name: 'Run Test on Metadata'
-      run: sfdx force:mdapi:deploy --deploydir=convert --checkonly --ignorewarnings -u hub-org
+      run: sfdx force:mdapi:deploy --deploydir=changed-sources/convert --checkonly --ignorewarnings -u hub-org
