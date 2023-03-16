@@ -48,8 +48,8 @@ jobs:
         git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
         git fetch --all
         git checkout -b pr
-        git --no-pager diff --name-status pr origin/staging
-        sfdx sgd:source:delta --to pr --from origin/staging --output changed-sources/ --generate-delta --source force-app/ 
+        git --no-pager diff --name-status pr origin/main
+        sfdx sgd:source:delta --to pr --from origin/main --output changed-sources/ --generate-delta --source force-app/ 
     
     - name: 'Run Test on Metadata'
       run: sfdx force:mdapi:deploy --deploydir=changed-sources -u hub-org
