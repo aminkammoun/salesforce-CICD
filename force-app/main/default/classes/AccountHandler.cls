@@ -5,7 +5,7 @@ public class AccountHandler {
         Account account = new Account(Name = name);
         // this comment is for AccountHandler after deleting yaml after merge 
         try {
-            System.debug('this test');
+            System.debug('this test is after deploy success');
             insert account;
 
         } catch (System.DmlException e) {
