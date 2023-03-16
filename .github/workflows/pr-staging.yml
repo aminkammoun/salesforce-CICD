@@ -45,9 +45,7 @@ jobs:
     
     # Install SFDX scanner
     - name: 'Installing SFDX scanner'
-      run: |
-        npm i @salesforce/sfdx-scanner@2.9.1
-        sfdx plugins
+      run: sfdx plugins:install @salesforce/sfdx-scanner
    # Runs a set of commands using the runners shell
     - name: 'Decrypt file'
       run: openssl enc -nosalt -aes-256-cbc -d -in assets/server.key.enc -out server.key -base64 -K ${{secrets.DECRYPTION_KEY}} -iv ${{secrets.DECRYPTION_IV}}
