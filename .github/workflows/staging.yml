@@ -48,7 +48,7 @@ jobs:
         git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
         git fetch --all
         git --no-pager diff --name-status staging origin/main
-        sfdx sgd:source:delta --to staging --from origin/master --repo . --output .
+        sfdx sgd:source:delta --to staging --from origin/main --repo . --output .
     - name: 'Convert Metadata'
       run: sfdx force:source:convert --manifest=package/package.xml --outputdir=convert
     - name: 'Run Test on Metadata'
