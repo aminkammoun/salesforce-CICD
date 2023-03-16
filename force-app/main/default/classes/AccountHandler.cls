@@ -5,7 +5,7 @@ public class AccountHandler {
         Account account = new Account(Name = name);
 
         try {
-
+            System.debug('this test working fine');
             insert account;
 
         } catch (System.DmlException e) {
